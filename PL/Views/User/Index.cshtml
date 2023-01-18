@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Users</h1>
+<br />
+<br />
+
+<br />
+<form asp-action="Index">
+    <div class="row align-items-center justify-content-center mt-3 mb-3">
+        <div class="col-8">
+            <input type="text" class="form-control" name="searchValue"/>
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success"/>
+        </div>
+    </div>
+</form>
+@if (Model.Count() > 0)
+{
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(D => D.Id)</th>
+                    <th>@Html.DisplayNameFor(D => D.UserName)</th>
+                    <th>@Html.DisplayNameFor(D => D.Email)</th>
+                    <th>@Html.DisplayNameFor(D => D.PhoneNumber)</th>
+                    
+                    <th>Details</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+                    <tr>
+                            <td>@Html.DisplayFor(M => user.Id)</td>
+                            <td>@Html.DisplayFor(M => user.UserName)</td>
+                            <td>@Html.DisplayFor(M => user.Email)</td>
+                            <td>@Html.DisplayFor(M => user.PhoneNumber)</td>
+                         
+                            
+                            <partial name="_ButtonsPartialView" model="@user.Id" />
+
+                    </tr>
+            }
+            </tbody>
+        </table>
+}
+else
+{
+        <div class="mt-5 alert alert-danger">
+            <h3>There Is No Employees</h3>
+        </div>
+
+}
+

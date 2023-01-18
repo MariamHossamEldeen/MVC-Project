@@ -1,0 +1,22 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Update Role</h1>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="All"></div>
+    <input hidden asp-for="Id" />
+     
+    <partial name="PartialViews/CreateEditRolePartialView"/>
+
+
+    <input type="submit" class="btn btn-primary" value="Save"/> |
+    <a asp-action="Index" class="btn btn-primary">Back To List</a>
+</form>
+
+@section ValidationScriptSection
+{
+    <partial name="_ValidationScriptsPartial"/>
+}
